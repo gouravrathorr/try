@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>गुनाहों का देवता — Sejal Creates</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Cabinet+Grotesk:wght@400;500;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   SEJAL CREATES × GUNAHO KA DEVTA
+   Theme: Warm Dusk Editorial
+   Palette: Deep plum · Terracotta · Parchment · Gold
+   Fonts: Playfair Display + DM Sans
+══════════════════════════════════════ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --plum:       #1e0f2e;
+  --plum-mid:   #2d1640;
+  --plum-light: #3d2155;
+  --terra:      #c85a2a;
+  --terra-l:    #e07245;
+  --gold:       #d4a843;
+  --gold-l:     #ecc96a;
+  --parch:      #f7f0e6;
+  --parch-d:    #ede3d4;
+  --cream:      #fdfaf6;
+  --ink:        #160b22;
+  --muted:      rgba(247,240,230,0.5);
+  --border-l:   rgba(247,240,230,0.1);
+  --border-gold:rgba(212,168,67,0.3);
+  --ff-display: 'Playfair Display', Georgia, serif;
+  --ff-sans:    'DM Sans', system-ui, sans-serif;
+  --ff-serif:   'Instrument Serif', Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--parch);
+  font-family: var(--ff-sans);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cur { position:fixed; width:12px; height:12px; background:var(--terra); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .25s,height .25s,background .25s; mix-blend-mode:screen; }
+#cur2 { position:fixed; width:40px; height:40px; border:1.5px solid rgba(196,88,42,0.5); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:left .1s ease,top .1s ease,width .3s,height .3s; }
+body.hovering #cur { width:22px; height:22px; background:var(--gold); }
+body.hovering #cur2 { width:64px; height:64px; border-color:var(--gold-l); }
+
+/* ── PROGRESS BAR ── */
+#prog { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--terra),var(--gold)); z-index:500; width:0; }
+
+/* ── NOISE GRAIN ── */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='.035'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:997;
+  opacity:.7;
+}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 0 3rem;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background .5s, border-color .5s;
+}
+nav.solid { background: rgba(22,11,34,0.97); border-bottom: 1px solid var(--border-l); backdrop-filter:blur(16px); }
+.nav-brand { display:flex; align-items:center; gap:.7rem; text-decoration:none; }
+.nav-sc { font-family:var(--ff-sans); font-weight:800; font-size:.95rem; letter-spacing:.02em; color:var(--parch); }
+.nav-sc span { color:var(--terra); }
+.nav-dot { width:5px; height:5px; background:var(--terra); border-radius:50%; }
+.nav-book { font-family:var(--ff-display); font-style:italic; font-size:.85rem; color:rgba(247,240,230,.45); }
+.nav-right { display:flex; align-items:center; gap:2rem; }
+.nav-links { display:flex; gap:1.8rem; list-style:none; }
+.nav-links a { font-size:.72rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .3s; }
+.nav-links a:hover { color:var(--gold); }
+
+/* ══════════════════════════════════════
+   SOCIAL CARDS (TOP BANNER)
+══════════════════════════════════════ */
+.social-banner {
+  position: relative; z-index: 10;
+  padding: 5.5rem 3rem 0;
+  display: flex; justify-content: center;
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.social-card {
+  flex: 1;
+  display: flex; align-items: center; gap: 1rem;
+  background: rgba(247,240,230,0.05);
+  border: 1px solid var(--border-l);
+  padding: 1.1rem 1.6rem;
+  border-radius: 16px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .35s, background .35s;
+  backdrop-filter: blur(8px);
+}
+.social-card::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(196,88,42,0.12), transparent 60%);
+  opacity:0; transition:opacity .35s;
+}
+.social-card:hover { transform:translateY(-4px) scale(1.02); border-color:var(--border-gold); background:rgba(247,240,230,0.08); }
+.social-card:hover::before { opacity:1; }
+.social-card.yt::before { background:linear-gradient(135deg, rgba(255,0,0,0.15), transparent 60%); }
+.social-card.ig::before { background:linear-gradient(135deg, rgba(196,88,42,0.18), rgba(212,168,67,0.1), transparent 60%); }
+.sc-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.sc-icon.yt-icon { background:linear-gradient(135deg,#ff0000,#cc0000); }
+.sc-icon.ig-icon { background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.sc-icon svg { width:22px; height:22px; fill:white; }
+.sc-text {}
+.sc-platform { font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:.15rem; }
+.sc-handle { font-size:.92rem; font-weight:700; color:var(--parch); letter-spacing:-.01em; }
+.sc-sub { font-size:.7rem; color:var(--muted); margin-top:.1rem; }
+.sc-arrow { margin-left:auto; color:var(--muted); font-size:1rem; transition:transform .3s, color .3s; }
+.social-card:hover .sc-arrow { transform:translate(3px,-3px); color:var(--gold); }
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align: center;
+  padding: 2rem 2rem 6rem;
+  overflow: hidden;
+}
+
+/* Radial ambient glow */
+.hero-glow {
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 55%, rgba(196,88,42,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,168,67,0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(61,33,85,0.5) 0%, transparent 60%);
+}
+
+/* Floating orbs */
+.orb { position:absolute; border-radius:50%; pointer-events:none; filter:blur(60px); animation:orbFloat 8s ease-in-out infinite; }
+.orb-1 { width:500px; height:500px; background:radial-gradient(circle,rgba(196,88,42,0.15),transparent 70%); top:-10%; left:-15%; animation-delay:0s; }
+.orb-2 { width:400px; height:400px; background:radial-gradient(circle,rgba(212,168,67,0.1),transparent 70%); bottom:-5%; right:-10%; animation-delay:3s; }
+.orb-3 { width:300px; height:300px; background:radial-gradient(circle,rgba(61,33,85,0.4),transparent 70%); top:40%; right:5%; animation-delay:5s; }
+
+.hero-eyebrow {
+  font-size:.68rem; font-weight:700; letter-spacing:.4em; text-transform:uppercase;
+  color:var(--terra-l); margin-bottom:2rem;
+  display:flex; align-items:center; gap:1rem; justify-content:center;
+  opacity:0; animation:up .7s .3s forwards;
+}
+.hero-eyebrow::before,.hero-eyebrow::after { content:''; width:32px; height:1px; background:var(--terra); }
+
+.hero-tag {
+  display:inline-flex; align-items:center; gap:.6rem;
+  border:1px solid var(--border-gold); border-radius:99px;
+  padding:.4rem 1.2rem; font-size:.7rem; font-weight:500;
+  color:var(--gold); background:rgba(212,168,67,0.08);
+  margin-bottom:2.5rem;
+  opacity:0; animation:up .7s .1s forwards;
+}
+.hero-tag-dot { width:6px; height:6px; background:var(--gold); border-radius:50%; animation:blink 1.5s infinite; }
+
+.hero-title {
+  font-family:var(--ff-display);
+  font-size:clamp(4.5rem,11vw,10rem);
+  font-weight:900; line-height:.9; letter-spacing:-.03em;
+  opacity:0; animation:up .9s .5s forwards;
+}
+.hero-title .l1 { display:block; color:var(--parch); }
+.hero-title .l2 {
+  display:block; font-style:italic;
+  background:linear-gradient(135deg,var(--terra) 0%,var(--gold) 60%,var(--terra-l) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  filter:drop-shadow(0 0 40px rgba(196,88,42,0.4));
+}
+
+.hero-rule {
+  width:1px; height:60px; background:linear-gradient(180deg,var(--terra),transparent);
+  margin:2.5rem auto;
+  opacity:0; animation:up .7s .9s forwards;
+}
+
+.hero-desc {
+  font-family:var(--ff-serif); font-style:italic;
+  font-size:clamp(1rem,2vw,1.25rem);
+  color:rgba(247,240,230,0.55); line-height:1.8; max-width:500px; margin:0 auto;
+  opacity:0; animation:up .8s 1.1s forwards;
+}
+
+.hero-by {
+  margin-top:1.5rem; font-size:.72rem; font-weight:500;
+  letter-spacing:.25em; text-transform:uppercase;
+  color:rgba(212,168,67,0.6);
+  opacity:0; animation:up .7s 1.3s forwards;
+}
+
+.hero-ctas {
+  display:flex; gap:1rem; justify-content:center; margin-top:3rem;
+  opacity:0; animation:up .8s 1.5s forwards;
+}
+.btn-fill {
+  background:linear-gradient(135deg,var(--terra),var(--terra-l));
+  color:white; padding:.9rem 2.2rem; border:none;
+  font-family:var(--ff-sans); font-size:.8rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; text-decoration:none; display:inline-block;
+  border-radius:8px; transition:transform .3s,box-shadow .3s;
+  box-shadow:0 8px 32px rgba(196,88,42,0.3);
+}
+.btn-fill:hover { transform:translateY(-3px); box-shadow:0 16px 48px rgba(196,88,42,0.45); }
+.btn-out {
+  border:1px solid var(--border-gold); color:var(--gold); padding:.9rem 2.2rem;
+  font-family:var(--ff-sans); font-size:.8rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; text-decoration:none; display:inline-block;
+  border-radius:8px; background:transparent; transition:background .3s,transform .3s;
+}
+.btn-out:hover { background:rgba(212,168,67,0.08); transform:translateY(-3px); }
+
+.hero-stats {
+  display:flex; gap:4rem; justify-content:center; margin-top:4rem;
+  padding-top:3rem; border-top:1px solid var(--border-l);
+  opacity:0; animation:up .8s 1.7s forwards;
+}
+.hstat-n { font-family:var(--ff-display); font-style:italic; font-size:2.4rem; font-weight:700; background:linear-gradient(135deg,var(--terra-l),var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hstat-l { font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); display:block; margin-top:.2rem; }
+
+.scroll-hint {
+  position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:.8rem;
+  color:var(--muted); font-size:.6rem; letter-spacing:.25em; text-transform:uppercase;
+  opacity:0; animation:up .7s 2.2s forwards;
+}
+.sh-line { width:1px; height:48px; background:linear-gradient(180deg,var(--terra),transparent); animation:shPulse 2s ease-in-out infinite; }
+
+/* ══════════════════════════════════════
+   SECTION BASE
+══════════════════════════════════════ */
+.sec { padding:8rem 3rem; position:relative; z-index:1; }
+.sec-inner { max-width:1240px; margin:0 auto; }
+.sec-label {
+  font-size:.62rem; font-weight:700; letter-spacing:.35em; text-transform:uppercase;
+  color:var(--terra-l); display:flex; align-items:center; gap:.75rem; margin-bottom:1.2rem;
+}
+.sec-label::before { content:''; width:24px; height:1px; background:var(--terra); flex-shrink:0; }
+.sec-h { font-family:var(--ff-display); font-size:clamp(2rem,4vw,3.2rem); font-weight:700; line-height:1.1; margin-bottom:1rem; }
+.sec-h em { font-style:italic; color:var(--terra-l); }
+.sec-sub { font-family:var(--ff-serif); font-style:italic; font-size:1.05rem; color:var(--muted); line-height:1.8; max-width:520px; }
+
+/* ══════════════════════════════════════
+   ABOUT SECTION
+══════════════════════════════════════ */
+#about { background:var(--plum); }
+.about-grid { display:grid; grid-template-columns:1fr 380px; gap:6rem; margin-top:4rem; align-items:start; }
+.about-prose p { color:rgba(247,240,230,0.65); line-height:2; font-size:.98rem; margin-bottom:1.3rem; }
+.about-prose p:first-child::first-letter { font-family:var(--ff-display); font-size:4rem; line-height:.85; float:left; margin:.15em .1em 0 0; color:var(--terra); }
+.about-prose p strong { color:var(--parch); }
+
+.book-card {
+  background:linear-gradient(160deg, var(--plum-mid), var(--plum));
+  border:1px solid var(--border-l);
+  border-radius:20px;
+  padding:2.5rem;
+  position:sticky; top:100px;
+  overflow:hidden;
+}
+.book-card::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(196,88,42,0.2),transparent 70%); }
+.bc-cover {
+  width:120px; height:168px;
+  background:linear-gradient(145deg,#2a0a20,#5a1030,#8c1a40,#5a1030);
+  border-radius:4px 10px 10px 4px;
+  margin:0 auto 2rem;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:-4px 0 0 #1a0510, 12px 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(196,88,42,0.2);
+  position:relative;
+}
+.bc-cover::before { content:''; position:absolute; inset:8px; border:1px solid rgba(212,168,67,0.25); border-radius:2px 7px 7px 2px; }
+.bc-ct { font-family:var(--ff-display); font-style:italic; font-size:.8rem; font-weight:700; color:var(--gold); text-align:center; line-height:1.3; text-shadow:0 0 12px rgba(212,168,67,0.4); }
+.bc-meta { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin-top:1.5rem; }
+.bc-m { background:rgba(247,240,230,0.04); border:1px solid var(--border-l); border-radius:10px; padding:.8rem; text-align:center; }
+.bc-m-n { font-family:var(--ff-display); font-style:italic; font-size:1.4rem; color:var(--terra-l); }
+.bc-m-l { font-size:.58rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); display:block; margin-top:.2rem; }
+.bc-tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.5rem; }
+.bc-tag { font-size:.62rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; background:rgba(196,88,42,0.15); border:1px solid rgba(196,88,42,0.25); color:var(--terra-l); padding:.3rem .7rem; border-radius:6px; }
+
+/* ══════════════════════════════════════
+   CHARACTERS
+══════════════════════════════════════ */
+#characters { background:var(--ink); }
+.char-row { display:flex; gap:1px; margin-top:4rem; background:var(--border-l); border:1px solid var(--border-l); border-radius:16px; overflow:hidden; }
+.ch-card {
+  flex:1; background:var(--ink); padding:3rem 2rem;
+  position:relative; overflow:hidden; cursor:default;
+  transition:flex .5s cubic-bezier(.16,1,.3,1), background .4s;
+}
+.ch-card:hover { flex:2.2; background:var(--plum); }
+.ch-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--terra),var(--gold)); transform:scaleX(0); transform-origin:left; transition:transform .5s; }
+.ch-card:hover::after { transform:scaleX(1); }
+.ch-initial { font-family:var(--ff-display); font-style:italic; font-size:3.5rem; font-weight:900; color:var(--terra); opacity:.15; line-height:1; margin-bottom:1.5rem; transition:opacity .4s,transform .4s; }
+.ch-card:hover .ch-initial { opacity:.4; transform:scale(1.1); }
+.ch-name { font-family:var(--ff-display); font-size:1.3rem; font-style:italic; color:var(--parch); margin-bottom:.25rem; white-space:nowrap; }
+.ch-role { font-size:.58rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--terra-l); margin-bottom:1rem; }
+.ch-dash { width:20px; height:1px; background:var(--terra); margin-bottom:1rem; transition:width .4s; }
+.ch-card:hover .ch-dash { width:40px; }
+.ch-bio { font-size:.82rem; color:rgba(247,240,230,0); line-height:1.75; font-style:italic; transition:color .4s; max-height:0; overflow:hidden; transition:color .5s,max-height .5s; }
+.ch-card:hover .ch-bio { color:rgba(247,240,230,0.55); max-height:200px; }
+.ch-whisper { margin-top:1.2rem; font-family:var(--ff-display); font-style:italic; font-size:.82rem; color:rgba(247,240,230,0); border-top:1px solid rgba(247,240,230,0); padding-top:1rem; line-height:1.5; transition:color .5s,border-color .5s; transition-delay:.1s; }
+.ch-card:hover .ch-whisper { color:rgba(247,240,230,0.3); border-color:var(--border-l); }
+
+/* ══════════════════════════════════════
+   CHAPTERS TIMELINE
+══════════════════════════════════════ */
+#chapters { background:var(--plum); }
+.ch-timeline { margin-top:5rem; position:relative; }
+.cht-line { position:absolute; left:30px; top:0; bottom:0; width:1px; background:linear-gradient(180deg,transparent,var(--terra),var(--gold),var(--terra),transparent); }
+.cht-item {
+  display:grid; grid-template-columns:62px 1fr;
+  gap:0; margin-bottom:1px; position:relative;
+}
+.cht-dot-col { display:flex; flex-direction:column; align-items:center; padding-top:2.2rem; }
+.cht-dot {
+  width:14px; height:14px; border-radius:50%; background:var(--terra);
+  box-shadow:0 0 0 3px rgba(196,88,42,0.2), 0 0 16px rgba(196,88,42,0.4);
+  flex-shrink:0; position:relative; z-index:1; transition:transform .3s,box-shadow .3s;
+}
+.cht-item:hover .cht-dot { transform:scale(1.5); box-shadow:0 0 0 5px rgba(196,88,42,0.2), 0 0 24px rgba(196,88,42,0.6); }
+.cht-content {
+  background:rgba(247,240,230,0.03); border:1px solid var(--border-l);
+  border-radius:16px; margin:0 0 .8rem; padding:2rem 2.5rem;
+  transition:background .4s,border-color .4s,transform .4s;
+  cursor:default;
+}
+.cht-item:hover .cht-content { background:rgba(247,240,230,0.06); border-color:rgba(196,88,42,0.25); transform:translateX(6px); }
+.cht-num { font-size:.58rem; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:.4rem; }
+.cht-title { font-family:var(--ff-display); font-size:1.3rem; font-weight:700; color:var(--parch); margin-bottom:.7rem; line-height:1.2; }
+.cht-title em { font-style:italic; color:var(--terra-l); }
+.cht-summary { font-size:.88rem; color:var(--muted); line-height:1.8; font-style:italic; margin-bottom:1rem; }
+.cht-pills { display:flex; flex-wrap:wrap; gap:.4rem; }
+.cht-pill { font-size:.62rem; font-weight:600; letter-spacing:.06em; background:rgba(196,88,42,0.1); border:1px solid rgba(196,88,42,0.2); color:rgba(196,88,42,0.8); padding:.25rem .7rem; border-radius:6px; transition:background .3s,color .3s; }
+.cht-item:hover .cht-pill { background:rgba(196,88,42,0.2); color:var(--terra-l); }
+.cht-keys { margin-top:.8rem; padding-top:.8rem; border-top:1px solid var(--border-l); list-style:none; }
+.cht-keys li { font-size:.8rem; color:rgba(247,240,230,0.4); padding:.3rem 0; padding-left:1.2rem; position:relative; line-height:1.5; }
+.cht-keys li::before { content:'→'; position:absolute; left:0; color:var(--terra); font-size:.7rem; }
+
+/* ══════════════════════════════════════
+   THEMES  — BENTO GRID
+══════════════════════════════════════ */
+#themes { background:var(--ink); }
+.bento { display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:auto; gap:1rem; margin-top:4rem; }
+.bn { background:rgba(247,240,230,0.03); border:1px solid var(--border-l); border-radius:16px; padding:2.2rem; position:relative; overflow:hidden; transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s,background .4s; cursor:default; }
+.bn:hover { transform:translateY(-5px) scale(1.01); border-color:rgba(196,88,42,0.3); background:rgba(196,88,42,0.04); }
+.bn::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--terra),var(--gold)); transform:scaleX(0); transform-origin:left; transition:transform .45s; }
+.bn:hover::after { transform:scaleX(1); }
+.bn.w2 { grid-column:span 2; }
+.bn.w3 { grid-column:span 3; }
+.bn.w4 { grid-column:span 4; }
+.bn.dark { background:var(--plum); border-color:rgba(247,240,230,0.06); }
+.bn.dark:hover { background:var(--plum-mid); }
+.bn-num { position:absolute; top:1.2rem; right:1.5rem; font-family:var(--ff-display); font-style:italic; font-size:4rem; font-weight:900; color:rgba(196,88,42,0.07); line-height:1; }
+.bn-icon { font-size:1.8rem; margin-bottom:1.2rem; display:block; }
+.bn-title { font-family:var(--ff-display); font-size:1.1rem; font-weight:700; color:var(--parch); margin-bottom:.6rem; line-height:1.2; }
+.bn-body { font-size:.84rem; color:var(--muted); line-height:1.75; font-style:italic; }
+
+/* ══════════════════════════════════════
+   LEARNINGS
+══════════════════════════════════════ */
+#learnings { background:var(--plum); }
+.learn-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:4rem; background:var(--border-l); border-radius:16px; overflow:hidden; border:1px solid var(--border-l); }
+.lg { background:var(--plum); padding:3rem 2.5rem; position:relative; overflow:hidden; transition:background .4s; }
+.lg:hover { background:var(--plum-mid); }
+.lg::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--terra),transparent); transform:scaleX(0); transition:transform .5s; }
+.lg:hover::before { transform:scaleX(1); }
+.lg-n { font-family:var(--ff-display); font-style:italic; font-size:3.5rem; font-weight:900; line-height:1; margin-bottom:.5rem; background:linear-gradient(135deg,rgba(196,88,42,0.2),rgba(212,168,67,0.15)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; transition:background .4s; }
+.lg:hover .lg-n { background:linear-gradient(135deg,rgba(196,88,42,0.5),rgba(212,168,67,0.4)); -webkit-background-clip:text; background-clip:text; }
+.lg-title { font-family:var(--ff-display); font-size:1.05rem; font-weight:700; color:var(--parch); margin-bottom:.7rem; }
+.lg-body { font-size:.85rem; color:var(--muted); line-height:1.8; font-style:italic; transition:color .4s; }
+.lg:hover .lg-body { color:rgba(247,240,230,0.65); }
+
+/* ══════════════════════════════════════
+   HABITS
+══════════════════════════════════════ */
+#habits { background:var(--ink); }
+.hb-list { margin-top:3.5rem; }
+.hb-row {
+  display:flex; align-items:flex-start; gap:2.5rem;
+  padding:2.2rem 1.5rem; border-bottom:1px solid var(--border-l);
+  position:relative; overflow:hidden; cursor:default;
+  transition:padding-left .4s cubic-bezier(.16,1,.3,1);
+  border-radius:12px; margin-bottom:.3rem;
+}
+.hb-row:hover { padding-left:2.5rem; }
+.hb-row::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,rgba(196,88,42,0.07),transparent 60%); opacity:0; transition:opacity .4s; border-radius:12px; }
+.hb-row:hover::before { opacity:1; }
+.hb-n { font-family:var(--ff-display); font-style:italic; font-size:3rem; font-weight:900; color:rgba(196,88,42,0.12); line-height:1; width:72px; flex-shrink:0; text-align:right; transition:color .4s; }
+.hb-row:hover .hb-n { color:rgba(196,88,42,0.35); }
+.hb-content {}
+.hb-title { font-family:var(--ff-display); font-size:1.1rem; font-weight:700; color:var(--parch); margin-bottom:.5rem; transition:color .4s; }
+.hb-row:hover .hb-title { color:var(--terra-l); }
+.hb-body { font-size:.87rem; color:var(--muted); line-height:1.8; font-style:italic; }
+
+/* ══════════════════════════════════════
+   REAL LIFE
+══════════════════════════════════════ */
+#reallife { background:var(--plum); }
+.rl-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-top:4rem; }
+.rl { background:rgba(247,240,230,0.03); border:1px solid var(--border-l); border-radius:16px; padding:2.5rem; position:relative; overflow:hidden; transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s; }
+.rl:hover { transform:translateY(-5px); border-color:rgba(72,202,228,0.2); }
+.rl::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(180deg,var(--terra),var(--gold)); transform:scaleY(0); transform-origin:top; transition:transform .45s; border-radius:3px 0 0 3px; }
+.rl:hover::before { transform:scaleY(1); }
+.rl-tag { font-size:.58rem; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--terra-l); margin-bottom:.7rem; display:flex; align-items:center; gap:.5rem; }
+.rl-tag::before { content:''; width:14px; height:1px; background:var(--terra); }
+.rl-title { font-family:var(--ff-display); font-size:1.05rem; font-weight:700; color:var(--parch); margin-bottom:.6rem; }
+.rl-body { font-size:.85rem; color:var(--muted); line-height:1.8; font-style:italic; }
+
+/* ══════════════════════════════════════
+   QUOTES
+══════════════════════════════════════ */
+#quotes { background:var(--ink); overflow:hidden; }
+.q-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-top:4rem; }
+.q { background:rgba(247,240,230,0.03); border:1px solid var(--border-l); border-radius:16px; padding:3.5rem; position:relative; overflow:hidden; transition:border-color .4s,background .4s; }
+.q:hover { border-color:var(--border-gold); background:rgba(212,168,67,0.03); }
+.q.span2 { grid-column:span 2; }
+.q-mark { font-family:var(--ff-display); font-style:italic; font-size:5rem; line-height:.8; color:var(--terra); opacity:.25; display:block; margin-bottom:.8rem; }
+.q-bg { position:absolute; right:-1rem; bottom:-2rem; font-family:var(--ff-display); font-size:14rem; font-weight:900; color:rgba(196,88,42,0.04); line-height:1; pointer-events:none; transition:color .4s; }
+.q:hover .q-bg { color:rgba(196,88,42,0.08); }
+.q-text { font-family:var(--ff-display); font-style:italic; font-size:clamp(1.1rem,2vw,1.5rem); color:var(--parch); line-height:1.65; margin-bottom:1.5rem; }
+.q.span2 .q-text { font-size:clamp(1.4rem,2.5vw,2rem); text-align:center; }
+.q-attr { font-size:.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--terra-l); }
+.q.span2 .q-attr { text-align:center; }
+
+/* ══════════════════════════════════════
+   SEJAL'S CORNER (CTA)
+══════════════════════════════════════ */
+#cta { background:var(--plum); padding:7rem 3rem; text-align:center; position:relative; overflow:hidden; }
+#cta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(196,88,42,0.12),transparent 70%); }
+.cta-inner { position:relative; max-width:700px; margin:0 auto; }
+.cta-badge { display:inline-flex; align-items:center; gap:.6rem; border:1px solid var(--border-gold); border-radius:99px; padding:.4rem 1.2rem; font-size:.7rem; font-weight:700; color:var(--gold); background:rgba(212,168,67,0.08); margin-bottom:2rem; letter-spacing:.1em; text-transform:uppercase; }
+.cta-h { font-family:var(--ff-display); font-size:clamp(2rem,4vw,3.5rem); font-weight:700; font-style:italic; color:var(--parch); line-height:1.15; margin-bottom:1.2rem; }
+.cta-sub { color:var(--muted); font-size:.95rem; line-height:1.8; margin-bottom:3rem; font-style:italic; font-family:var(--ff-serif); }
+.cta-socials { display:flex; gap:1rem; justify-content:center; }
+.cta-soc { display:flex; align-items:center; gap:.75rem; padding:1rem 2rem; border-radius:12px; text-decoration:none; font-size:.85rem; font-weight:700; transition:transform .3s,box-shadow .3s; }
+.cta-yt { background:linear-gradient(135deg,#ff0000,#cc0000); color:white; box-shadow:0 8px 32px rgba(255,0,0,0.25); }
+.cta-yt:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(255,0,0,0.4); }
+.cta-ig { background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:white; box-shadow:0 8px 32px rgba(220,39,67,0.25); }
+.cta-ig:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(220,39,67,0.4); }
+.cta-soc svg { width:20px; height:20px; fill:white; }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer { background:#0e0718; border-top:1px solid var(--border-l); padding:4rem 3rem; }
+.footer-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:2rem; }
+.footer-brand { }
+.footer-logo { font-family:var(--ff-sans); font-weight:800; font-size:1.1rem; color:var(--parch); }
+.footer-logo span { color:var(--terra); }
+.footer-tagline { font-size:.75rem; color:var(--muted); margin-top:.3rem; font-style:italic; }
+.footer-book { font-family:var(--ff-display); font-style:italic; font-size:1.5rem; color:var(--terra); }
+.footer-meta { font-size:.7rem; color:var(--muted); text-align:right; line-height:1.8; }
+
+/* ══════════════════════════════════════
+   REVEAL ANIMATIONS
+══════════════════════════════════════ */
+.rv { opacity:0; transform:translateY(30px); transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1); }
+.rv.on { opacity:1; transform:none; }
+.rvl { opacity:0; transform:translateX(-30px); transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1); }
+.rvl.on { opacity:1; transform:none; }
+.rvr { opacity:0; transform:translateX(30px); transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1); }
+.rvr.on { opacity:1; transform:none; }
+
+/* ══════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════ */
+@keyframes up { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+@keyframes orbFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-20px) scale(1.05)} }
+@keyframes shPulse { 0%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1} 100%{opacity:0;transform:scaleY(1);transform-origin:top} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:1024px){
+  .about-grid{grid-template-columns:1fr; gap:3rem}
+  .book-card{position:static}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .bn.w2,.bn.w3,.bn.w4{grid-column:span 2}
+  .learn-grid{grid-template-columns:1fr 1fr}
+  .char-row{flex-direction:column}
+  .ch-card{flex:none}
+  .ch-bio,.ch-whisper{color:rgba(247,240,230,0.45)!important;max-height:none!important}
+}
+@media(max-width:768px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .social-banner{flex-direction:column;padding-top:5rem}
+  .hero-stats{gap:2rem;flex-wrap:wrap}
+  .about-grid,.rl-grid,.q-grid,.learn-grid{grid-template-columns:1fr}
+  .q.span2{grid-column:span 1}
+  .sec{padding:5rem 1.5rem}
+  .bento{grid-template-columns:1fr}
+  .bn.w2,.bn.w3,.bn.w4{grid-column:span 1}
+  .cta-socials{flex-direction:column;align-items:center}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+  .footer-meta{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+<div id="prog"></div>
+
+<!-- ════════════════════════
+     NAV
+════════════════════════ -->
+<nav id="nav">
+  <a href="#" class="nav-brand">
+    <span class="nav-sc">Sejal <span>Creates</span></span>
+    <span class="nav-dot"></span>
+    <span class="nav-book">गुनाहों का देवता</span>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">Story</a></li>
+      <li><a href="#characters">Characters</a></li>
+      <li><a href="#chapters">Chapters</a></li>
+      <li><a href="#themes">Themes</a></li>
+      <li><a href="#learnings">Learnings</a></li>
+      <li><a href="#quotes">Quotes</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ════════════════════════
+     SOCIAL CARDS
+════════════════════════ -->
+<div class="social-banner">
+  <a class="social-card yt" href="https://youtube.com/@sejal.createss" target="_blank" rel="noopener">
+    <div class="sc-icon yt-icon">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </div>
+    <div class="sc-text">
+      <div class="sc-platform">YouTube</div>
+      <div class="sc-handle">@sejal.createss</div>
+      <div class="sc-sub">Book reviews &amp; more ✨</div>
+    </div>
+    <div class="sc-arrow">↗</div>
+  </a>
+
+  <a class="social-card ig" href="https://www.instagram.com/sejal.creates/" target="_blank" rel="noopener">
+    <div class="sc-icon ig-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+    </div>
+    <div class="sc-text">
+      <div class="sc-platform">Instagram</div>
+      <div class="sc-handle">@sejal.creates</div>
+      <div class="sc-sub">Stories, reels &amp; bookish life 📚</div>
+    </div>
+    <div class="sc-arrow">↗</div>
+  </a>
+</div>
+
+<!-- ════════════════════════
+     HERO
+════════════════════════ -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="hero-tag">
+    <span class="hero-tag-dot"></span>
+    Sejal Creates &nbsp;·&nbsp; Book Guide
+  </div>
+
+  <div class="hero-eyebrow">Dharmaveer Bharti &nbsp;·&nbsp; 1949 &nbsp;·&nbsp; Hindi Masterpiece</div>
+
+  <h1 class="hero-title">
+    <span class="l1">गुनाहों का</span>
+    <span class="l2">देवता</span>
+  </h1>
+
+  <div class="hero-rule"></div>
+
+  <p class="hero-desc">A man loved so completely, so silently — that his love became the most beautiful and most destructive force in both their lives.</p>
+  <div class="hero-by">Gunaho Ka Devta &nbsp;·&nbsp; God of Sins</div>
+
+  <div class="hero-ctas">
+    <a href="#chapters" class="btn-fill">Explore Chapters</a>
+    <a href="#learnings" class="btn-out">Key Learnings</a>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="hstat-n">1949</div>
+      <span class="hstat-l">Year Written</span>
+    </div>
+    <div>
+      <div class="hstat-n">75+</div>
+      <span class="hstat-l">Years in Print</span>
+    </div>
+    <div>
+      <div class="hstat-n">5</div>
+      <span class="hstat-l">Main Characters</span>
+    </div>
+    <div>
+      <div class="hstat-n">∞</div>
+      <span class="hstat-l">Heartbreaks</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="sh-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ════════════════════════
+     ABOUT
+════════════════════════ -->
+<section class="sec" id="about">
+  <div class="sec-inner">
+    <div class="rv">
+      <div class="sec-label">The Novel</div>
+      <h2 class="sec-h">A love story that never got to <em>be</em> a love story.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-prose rvl">
+        <p>Chander is a brilliant, idealistic student living in the home of <strong>Professor Shukla</strong> in Allahabad. He loves the professor's daughter Sudha — quietly, completely, with every part of himself. But he is paralyzed: by the gap between who he is and who he thinks he must be to deserve her. So he says nothing.</p>
+        <p>He watches. He cares. He aches. He stays <strong>silent</strong>. And in that silence, everything — absolutely everything — is lost.</p>
+        <p>Dharmaveer Bharti wrote this at just 23 years old. He somehow captured what takes most people a lifetime to understand: that idealism, when it refuses to meet reality, becomes its own kind of cruelty. That the "noble" choice is sometimes the most selfish one.</p>
+        <p>This is not a romance. It is the story of what happens to love when a person is too afraid, too proud, or too convinced of their own unworthiness to act on it. And it stays with you — long after the last page.</p>
+      </div>
+      <div class="rvr">
+        <div class="book-card">
+          <div class="bc-cover">
+            <div class="bc-ct">गुनाहों<br>का देवता</div>
+          </div>
+          <div style="text-align:center;margin-bottom:1.2rem">
+            <div style="font-family:var(--ff-display);font-style:italic;font-size:1.1rem;color:var(--parch)">Gunaho Ka Devta</div>
+            <div style="font-size:.65rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:.3rem">Dharmaveer Bharti</div>
+          </div>
+          <div class="bc-meta">
+            <div class="bc-m"><div class="bc-m-n">1949</div><span class="bc-m-l">Written</span></div>
+            <div class="bc-m"><div class="bc-m-n">हिन्दी</div><span class="bc-m-l">Language</span></div>
+            <div class="bc-m"><div class="bc-m-n">23</div><span class="bc-m-l">Author's Age</span></div>
+            <div class="bc-m"><div class="bc-m-n">∞</div><span class="bc-m-l">Timeless</span></div>
+          </div>
+          <div class="bc-tags">
+            <span class="bc-tag">Love</span>
+            <span class="bc-tag">Tragedy</span>
+            <span class="bc-tag">Silence</span>
+            <span class="bc-tag">Guilt</span>
+            <span class="bc-tag">Allahabad</span>
+            <span class="bc-tag">Classic Hindi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     CHARACTERS
+════════════════════════ -->
+<section class="sec" id="characters" style="padding-bottom:0">
+  <div class="sec-inner">
+    <div class="rv">
+      <div class="sec-label">The People</div>
+      <h2 class="sec-h">Characters who feel like someone <em>you know.</em></h2>
+      <p class="sec-sub">Hover each card to reveal their full story.</p>
+    </div>
+  </div>
+  <div class="char-row rv" style="margin-top:3rem">
+    <div class="ch-card">
+      <div class="ch-initial">च</div>
+      <div class="ch-name">Chander</div>
+      <div class="ch-role">The God of Sins</div>
+      <div class="ch-dash"></div>
+      <div class="ch-bio">Brilliant, idealistic, completely undone by his own nobility. He loves Sudha more than anything — and uses that love as a reason to do absolutely nothing at all. His idealism is his greatest gift and his cruelest weapon.</div>
+      <div class="ch-whisper">"Too pure to speak. Too proud to try. Too human to survive his own heart."</div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-initial">स</div>
+      <div class="ch-name">Sudha</div>
+      <div class="ch-role">The Beloved</div>
+      <div class="ch-dash"></div>
+      <div class="ch-bio">Gentle, patient, quietly radiant. She waits for Chander to speak. He doesn't. She is married off. She suffers in silence. She forgives him completely and unconditionally. She deserved better from the world — and from him.</div>
+      <div class="ch-whisper">"Her grace was real. Society's expectation of it was a theft."</div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-initial">प</div>
+      <div class="ch-name">Pammi</div>
+      <div class="ch-role">The Mirror</div>
+      <div class="ch-dash"></div>
+      <div class="ch-bio">Bold, modern, unapologetically alive. She wants Chander and she takes him. She is not the villain — she is a mirror that shows Chander the person he is too frightened to become. Desire without guilt.</div>
+      <div class="ch-whisper">"She lived the life Chander was too afraid to want."</div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-initial">ब</div>
+      <div class="ch-name">Binati</div>
+      <div class="ch-role">Second Chance</div>
+      <div class="ch-dash"></div>
+      <div class="ch-bio">She loves Chander genuinely and offers him a future. He cannot take it. His heart still lives somewhere else entirely. Binati is the tragedy of loving someone who is still haunted by a ghost they refuse to release.</div>
+      <div class="ch-whisper">"She offered tomorrow. He was still living in yesterday."</div>
+    </div>
+    <div class="ch-card">
+      <div class="ch-initial">श</div>
+      <div class="ch-name">Prof. Shukla</div>
+      <div class="ch-role">The Patriarch</div>
+      <div class="ch-dash"></div>
+      <div class="ch-bio">Kind, conventional, entirely unaware of what he sets in motion. His well-meaning decisions are the engine of the tragedy. He is how society causes harm — not through cruelty, but through absolute certainty about how things should be.</div>
+      <div class="ch-whisper">"He did what was expected. That was the whole tragedy."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     CHAPTERS
+════════════════════════ -->
+<section class="sec" id="chapters">
+  <div class="sec-inner">
+    <div class="rv">
+      <div class="sec-label">Chapter by Chapter</div>
+      <h2 class="sec-h">The story — <em>beat by beat.</em></h2>
+      <p class="sec-sub">Nine chapters. Nine steps deeper into the most beautiful tragedy in Hindi literature.</p>
+    </div>
+    <div class="ch-timeline rv">
+      <div class="cht-line"></div>
+
+      <div class="cht-item">
+        <div class="cht-dot-col"><div class="cht-dot"></div></div>
+        <div class="cht-content">
+          <div class="cht-num">Chapter I</div>
+          <div class="cht-title">A World of <em>Quiet Love</em></div>
+          <p class="cht-summary">We enter Chander's world — a scholarship student in his professor's home, sharing slow mornings and long evenings with Sudha. Their bond is tender, entirely unnamed, and electric. Neither speaks. Both feel everything.</p>
+          <ul class="cht-keys">
+            <li>Chander: gifted, idealistic, quietly burning inside</li>
+            <li>Sudha: innocent, warm, waiting without knowing she is</li>
+            <li>Their bond is domestic, sacred, and utterly unnamed</li>
+          </ul>
+          <div class="cht-pills" style="margin-top:.8rem"><span class="cht-pill">First meeting</span><span class="cht-pill">Unspoken love</span><span class="cht-pill">Domestic intimacy</span></div>
+        </div>
+      </div>
+
+      <div class="cht-item">
+        <div class="cht-dot-col"><div class="cht-dot" style="background:var(--gold)"></div></div>
+        <div class="cht-content">
+          <div class="cht-num">Chapter II</div>
+          <div class="cht-title">Love Without <em>Declaration</em></div>
+          <p class="cht-summary">Chander's feelings deepen into a religion. He believes speaking them would corrupt something sacred — or reveal he is unworthy of her. He decides to love from a distance. It feels noble. It is the first catastrophic mistake.</p>
+          <ul class="cht-keys">
+            <li>Chander's idealism is his greatness and his fatal flaw</li>
+            <li>Silence is treated as devotion — but it is actually fear</li>
+            <li>The first crack in what could have been appears</li>
+          </ul>
+          <div class="cht-pills" style="margin-top:.8rem"><span class="cht-pill">Idealism</span><span class="cht-pill">Self-denial</span><span class="cht-pill">Fear disguised as virtue</span></div>
+        </div>
+      </div>
+
+      <div class="cht-item">
+        <div class="cht-dot-col"><div class="cht-dot" style="background:var(--terra-l)"></div></div>
+        <div class="cht-content">
+          <div class="cht-num">Chapter III</div>
+          <div class="cht-title"><em>Pammi</em> Arrives</div>
+          <p class="cht-summary">Pammi enters — everything Sudha is not. Bold, sensual, unafraid of wanting. She wants Chander and shows it. He is drawn to her complexity. The contrast between devotion and desire begins to fracture him from inside.</p>
+          <ul class="cht-keys">
+            <li>Pammi as counterpoint: desire vs. devotion made visible</li>
+            <li>Chander's duality is exposed for the very first time</li>
+            <li>His moral compass begins to spin</li>
+          </ul>
+          <div class="cht-pills" style="margin-top:.8rem"><span class="cht-pill">Temptation</span><span class="cht-pill">Desire vs Devotion</span><span class="cht-pill">Duality</span></div>
+        </div>
+      </div>
+
+      <div class="cht-item">
+        <div class="cht-dot-col"><div class="cht-dot" style="background:#e05;box-shadow:0 0 0 3px rgba(238,0,85,0.2),0 0 20px rgba(238,0,85,0.4)"></div></div>
+        <div class="cht-content">
+          <div class="cht-num">Chapter IV &nbsp;💔</div>
+          <div class="cht-title">Sudha is <em>Married Off</em></div>
+          <p class="cht-summary">The moment everything shatters. Sudha is given to another man. Chander could have spoken — he didn't. He watches in silence. The world does not stop, but his does. This is the novel's great earthquake — and like everything else, it happens in total silence.</p>
+          <ul class="cht-keys">
+            <li>Silence becomes permanent, irreversible loss</li>
+            <li>Sudha accepts with dignity that absolutely destroys the reader</li>
+            <li>The novel's point of no return — everything after flows from this moment</li>
+          </ul>
+          <div class="cht-pills" style="margin-top:.8rem"><span class="cht-pill">The earthquake</span><span class="cht-pill">Social machinery</span><span class="cht-pill">Point of no return</span></div>
+        </div>
+      </div>
+
+      <div class="cht-item">
+        <div class="cht-dot-col"><div class="cht-dot" style="background:#c9184a"></div></div>
+        <div class="cht-content">
+          <div class="cht-num">Chapter V</div>
+          <div class="cht-title">Chander's <em>Descent</em></div>
+          <p class="cht-summary">With Sudha gone, Chander spirals. He turns to Pammi — not from love, but from emptiness. He knows it means nothing. He doesn't care. Grief without any outlet becomes self-destruction dressed as simply living.</p>
+          <ul class="cht-keys">
+            <li>Chander's moral collapse — he stops pretending to be noble</li>
+            <li>Pammi as escape hatch, not genuine connection</li>
+            <li>The "devta" (god) is revealed as very, very human</li>
+          </ul>
+          <div class="cht-pills" style="margin-top:.8rem"><span class="cht-pill">Grief</span><span class="cht-pill">Escape</span><span class="cht-pill">Self-destruction</span></div>
+        </div>
+      </div>
+
+      <div class="cht-item">
+        <div class="cht-dot-col"><div class="cht-dot" style="background:#48cae4"></div></div>
+        <div class="cht-content">
+          <div class="cht-num">Chapter VI</div>
+          <div class="cht-title">Letters Across the <em>Distance</em></div>
+          <p class="cht-summary">Chander and Sudha begin writing to each other. Letters say what faces never could. Her marriage is unhappy. His guilt is unbearable. The most lyrically devastating section of the novel — love in writing, because it is too late in life.</p>
+          <ul class="cht-keys">
+            <li>Letters as the only honest language between them</li>
+            <li>Sudha's quiet dignity in suffering elevates her character</li>
+            <li>Bharti's prose is at its most lyrical and most painful here</li>
+          </ul>
+          <div class="cht-pills" style="margin-top:.8rem"><span class="cht-pill">Letters</span><span class="cht-pill">Longing</span><span class="cht-pill">Guilt deepens</span></div>
+        </div>
+      </div>
+
+      <div class="cht-item">
+        <div class="cht-dot-col"><div class="cht-dot" style="background:var(--gold)"></div></div>
+        <div class="cht-content">
+          <div class="cht-num">Chapter VII</div>
+          <div class="cht-title">Binati & The <em>Road Not Taken</em></div>
+          <p class="cht-summary">Binati loves Chander genuinely and he sees it. He cannot reciprocate — his heart still lives somewhere else. The novel asks its hardest question: can we choose new love when old love still lives inside us?</p>
+          <ul class="cht-keys">
+            <li>The possibility of redemption — and Chander's refusal of it</li>
+            <li>His paralysis is revealed as emotional self-punishment</li>
+            <li>The tragedy of loving someone who is haunted by someone else</li>
+          </ul>
+          <div class="cht-pills" style="margin-top:.8rem"><span class="cht-pill">Second chance</span><span class="cht-pill">Paralysis</span><span class="cht-pill">Redemption refused</span></div>
+        </div>
+      </div>
+
+      <div class="cht-item">
+        <div class="cht-dot-col"><div class="cht-dot" style="background:var(--terra)"></div></div>
+        <div class="cht-content">
+          <div class="cht-num">Chapter VIII</div>
+          <div class="cht-title">The <em>Final Meeting</em></div>
+          <p class="cht-summary">Sudha is gravely ill. Chander rushes to her. They finally exist in truth together — no pretense, no distance, no society between them. Too late, but real. Widely considered the most beautiful and heartbreaking pages in all of Hindi literature.</p>
+          <ul class="cht-keys">
+            <li>Illness strips away all pretense — truth finally becomes visible</li>
+            <li>Sudha's total forgiveness: grace as both beauty and injustice</li>
+            <li>The novel reaches its emotional and literary peak</li>
+          </ul>
+          <div class="cht-pills" style="margin-top:.8rem"><span class="cht-pill">Truth finally spoken</span><span class="cht-pill">Forgiveness</span><span class="cht-pill">Too late but real</span></div>
+        </div>
+      </div>
+
+      <div class="cht-item">
+        <div class="cht-dot-col"><div class="cht-dot" style="background:#555;box-shadow:0 0 0 3px rgba(255,255,255,0.06)"></div></div>
+        <div class="cht-content">
+          <div class="cht-num">Chapter IX</div>
+          <div class="cht-title">The End. <em>Just Emptiness.</em></div>
+          <p class="cht-summary">Sudha dies quietly — as she lived. Chander survives, and Bharti frames this as the real punishment. No redemption arc. No resolution. Just the weight of everything that was never said, and the silence that will never, ever end.</p>
+          <ul class="cht-keys">
+            <li>Death as quiet inevitability, not dramatic climax</li>
+            <li>Living on is Chander's true sentence — worse than dying</li>
+            <li>The title fully illuminated: sins of love, sins of silence</li>
+          </ul>
+          <div class="cht-pills" style="margin-top:.8rem"><span class="cht-pill">Death</span><span class="cht-pill">Survival as punishment</span><span class="cht-pill">No resolution</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     THEMES BENTO
+════════════════════════ -->
+<section class="sec" id="themes">
+  <div class="sec-inner">
+    <div class="rv">
+      <div class="sec-label">What It's Really About</div>
+      <h2 class="sec-h">Six ideas that make this <em>unforgettable.</em></h2>
+    </div>
+    <div class="bento rv">
+
+      <div class="bn w4 dark">
+        <div class="bn-num">01</div>
+        <span class="bn-icon">🕊️</span>
+        <div class="bn-title">Love as Self-Sacrifice — and Self-Deception</div>
+        <p class="bn-body">Chander's love is so "pure" it becomes self-annihilating. He frames his inaction as noble restraint — but Bharti is unsparing: this is a beautiful story Chander tells himself to avoid the risk of rejection. His idealism is simultaneously his most admirable and most selfish quality. Purity used as a shield is still cowardice.</p>
+      </div>
+
+      <div class="bn w2">
+        <div class="bn-num">02</div>
+        <span class="bn-icon">🔇</span>
+        <div class="bn-title">Silence as the Original Sin</div>
+        <p class="bn-body">The catastrophe isn't what Chander did — it's what he didn't do. Words unsaid carry more weight than any action in this novel. Silence, treated as virtue, becomes the engine of all suffering.</p>
+      </div>
+
+      <div class="bn w2">
+        <div class="bn-num">03</div>
+        <span class="bn-icon">⛓️</span>
+        <div class="bn-title">Class: The Invisible Barrier</div>
+        <p class="bn-body">Chander's poverty is never cited as the reason he doesn't act — it doesn't need to be. It lives in his posture, his hesitation, his assumption that he is unworthy. Economic inequality doesn't need to announce itself to be devastating.</p>
+      </div>
+
+      <div class="bn w2">
+        <div class="bn-num">04</div>
+        <span class="bn-icon">🌑</span>
+        <div class="bn-title">Guilt as Identity</div>
+        <p class="bn-body">After Sudha's marriage, Chander stops being someone who made a mistake. He becomes his mistakes. Guilt as permanent identity — not as a catalyst for change. Bharti shows us the trap with painful, precise clarity.</p>
+      </div>
+
+      <div class="bn w2">
+        <div class="bn-num">05</div>
+        <span class="bn-icon">🌺</span>
+        <div class="bn-title">The Sacred Feminine — and Its Cost</div>
+        <p class="bn-body">Sudha is pure, patient, forgiving — and elevated to near-divine status. Beautiful, yes. Also a critique. Societies praise women most who suffer most quietly. Her grace is real. The expectation of infinite grace is a theft.</p>
+      </div>
+
+      <div class="bn w2 dark">
+        <div class="bn-num">06</div>
+        <span class="bn-icon">🔥</span>
+        <div class="bn-title">Idealism That Destroys</div>
+        <p class="bn-body">Bharti doesn't answer cleanly whether an ideal is worth holding if it destroys everything around it. He just shows you the wreckage. The title says it all: Chander's idealism was both his holiness and his sin.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     LEARNINGS
+════════════════════════ -->
+<section class="sec" id="learnings">
+  <div class="sec-inner">
+    <div class="rv">
+      <div class="sec-label">Core Learnings</div>
+      <h2 class="sec-h">What this book <em>actually teaches</em> you.</h2>
+    </div>
+  </div>
+  <div class="learn-grid rv">
+    <div class="lg">
+      <div class="lg-n">L1</div>
+      <div class="lg-title">Speak before it's too late</div>
+      <p class="lg-body">The entire tragedy begins with one unspoken sentence. Honest, timely expression — in love, in friendship, in every relationship — is not weakness. Silence dressed as nobility is still cowardice. And it hurts the people you're trying to protect.</p>
+    </div>
+    <div class="lg">
+      <div class="lg-n">L2</div>
+      <div class="lg-title">Guilt signals change. It is not an identity.</div>
+      <p class="lg-body">Guilt is useful for exactly one purpose: prompting you to do something differently. Once acknowledged, it should be acted on — not worn as a permanent costume. Chander turns guilt into identity and slowly destroys himself from the inside out.</p>
+    </div>
+    <div class="lg">
+      <div class="lg-n">L3</div>
+      <div class="lg-title">Idealism without courage is vanity</div>
+      <p class="lg-body">Holding a beautiful ideal while refusing to fight for it is not noble — it is comfortable cowardice. Chander's purity of feeling is the most selfish thing in this novel. A feeling unexpressed is a gift withheld.</p>
+    </div>
+    <div class="lg">
+      <div class="lg-n">L4</div>
+      <div class="lg-title">Escapism delays grief. It never ends it.</div>
+      <p class="lg-body">Chander turns to Pammi to escape the pain of losing Sudha. It gives him nothing — only more distance from healing. The only way through grief is through it, not around it. Numbness is not peace.</p>
+    </div>
+    <div class="lg">
+      <div class="lg-n">L5</div>
+      <div class="lg-title">Harm done with good intentions is still harm</div>
+      <p class="lg-body">Prof. Shukla is not the villain. He is kind, loving, completely certain he is doing the right thing. The novel shows that harm done through tradition and certainty is no less real than harm done through cruelty.</p>
+    </div>
+    <div class="lg">
+      <div class="lg-n">L6</div>
+      <div class="lg-title">Shared grief heals. Suppressed grief breaks.</div>
+      <p class="lg-body">Both Chander and Sudha suffer entirely alone — never asking the other to carry the weight together. The novel's deepest lesson: grief witnessed by another person, grief spoken aloud, is the only grief that eventually transforms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     HABITS
+════════════════════════ -->
+<section class="sec" id="habits">
+  <div class="sec-inner">
+    <div class="rv">
+      <div class="sec-label">Habits to Build</div>
+      <h2 class="sec-h">Six things Chander never learned — <em>that you can.</em></h2>
+    </div>
+    <div class="hb-list rv">
+      <div class="hb-row">
+        <div class="hb-n">01</div>
+        <div>
+          <div class="hb-title">Say it today. Not someday.</div>
+          <p class="hb-body">Practice expressing love, appreciation, and difficult truths in the present moment — not later, when the time is "right." "When the time is right" is exactly what Chander told himself. He ran out of time. So do most people.</p>
+        </div>
+      </div>
+      <div class="hb-row">
+        <div class="hb-n">02</div>
+        <div>
+          <div class="hb-title">Name your grief. Don't numb it.</div>
+          <p class="hb-body">When something hurts, resist the immediate reach for distraction — a new person, a new habit, a new obsession. Whatever lets you genuinely process rather than postpone. The thing you most want to avoid feeling is usually the one that most needs to be felt.</p>
+        </div>
+      </div>
+      <div class="hb-row">
+        <div class="hb-n">03</div>
+        <div>
+          <div class="hb-title">Interrogate your "noble" stories.</div>
+          <p class="hb-body">When you tell yourself "I'm doing this for them" — pause. Is this truly for them? Or is it a story you've constructed to protect yourself from the risk of being wrong, rejected, or genuinely vulnerable? Chander's nobility was his most comfortable hiding place.</p>
+        </div>
+      </div>
+      <div class="hb-row">
+        <div class="hb-n">04</div>
+        <div>
+          <div class="hb-title">See who is actually in front of you.</div>
+          <p class="hb-body">Chander couldn't see Binati because Sudha still lived in his mind. The habit of full presence — genuinely attending to the people who are here, now — is what this novel teaches most powerfully by its total absence.</p>
+        </div>
+      </div>
+      <div class="hb-row">
+        <div class="hb-n">05</div>
+        <div>
+          <div class="hb-title">Question the script you're following.</div>
+          <p class="hb-body">Whenever you're about to do something "because that's how it's done" — ask who this actually serves. Convention, tradition, social expectation. Sudha's tragedy was authored by people following rules they never once questioned.</p>
+        </div>
+      </div>
+      <div class="hb-row">
+        <div class="hb-n">06</div>
+        <div>
+          <div class="hb-title">Forgive yourself. Actually.</div>
+          <p class="hb-body">Real forgiveness means releasing yourself from the obligation to keep suffering as proof that you care. It doesn't mean the mistake didn't matter. It means you've decided to stop punishing yourself for it — and start actually living instead.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     REAL LIFE
+════════════════════════ -->
+<section class="sec" id="reallife">
+  <div class="sec-inner">
+    <div class="rv">
+      <div class="sec-label">Real Life Connections</div>
+      <h2 class="sec-h">This novel is about <em>your life.</em></h2>
+      <p class="sec-sub">Written in 1949. Still describing conversations happening right now.</p>
+    </div>
+    <div class="rl-grid">
+      <div class="rl rv">
+        <div class="rl-tag">Scenario I</div>
+        <div class="rl-title">The love you never confessed</div>
+        <p class="rl-body">Almost everyone has a Chander moment — someone loved in secret, watched from a painful distance, lost without a word being spoken. The novel validates this grief completely. It also shows its full, brutal, lifelong cost.</p>
+      </div>
+      <div class="rl rv">
+        <div class="rl-tag">Scenario II</div>
+        <div class="rl-title">Arranged marriage and hidden hearts</div>
+        <p class="rl-body">Sudha's marriage to someone she does not love remains a reality for millions. Her suffering is silent, her dignity immense — and her story is the most-read account of this specific pain in all of Hindi literature.</p>
+      </div>
+      <div class="rl rv">
+        <div class="rl-tag">Scenario III</div>
+        <div class="rl-title">The rebound that solves nothing</div>
+        <p class="rl-body">Turning to someone new to escape old grief. Chander's relationship with Pammi is this pattern made fully visible — every hollow moment, every distraction that leads nowhere. Universally, painfully recognizable.</p>
+      </div>
+      <div class="rl rv">
+        <div class="rl-tag">Scenario IV</div>
+        <div class="rl-title">Class barriers that nobody names</div>
+        <p class="rl-body">Chander's poverty shapes every choice without ever being cited as the reason. Economic inequality is most powerful when invisible — when it lives in postures and silent calculations, not spoken words.</p>
+      </div>
+      <div class="rl rv">
+        <div class="rl-tag">Scenario V</div>
+        <div class="rl-title">When guilt becomes your whole personality</div>
+        <p class="rl-body">Making one mistake and then spending years — decades — defining yourself by it. The useful thing guilt could do is abandoned. Instead it becomes costume, story, excuse not to try again. Chander's arc is the warning.</p>
+      </div>
+      <div class="rl rv">
+        <div class="rl-tag">Scenario VI</div>
+        <div class="rl-title">The friendship where love lives unnamed</div>
+        <p class="rl-body">The Chander-Sudha bond mirrors countless friendships where love exists entirely in the subtext — felt by both, named by neither. The novel honors this love for its purity. And mourns what that purity ultimately costs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     QUOTES
+════════════════════════ -->
+<section class="sec" id="quotes">
+  <div class="sec-inner">
+    <div class="rv">
+      <div class="sec-label">From the Pages</div>
+      <h2 class="sec-h">Lines that <em>stay with you.</em></h2>
+    </div>
+    <div class="q-grid rv">
+
+      <div class="q span2">
+        <div class="q-bg">"</div>
+        <span class="q-mark">"</span>
+        <p class="q-text">कुछ रिश्ते इतने पाक होते हैं कि उन्हें नाम देना उन्हें छोटा कर देता है।</p>
+        <div class="q-attr">— Dharmaveer Bharti &nbsp;·&nbsp; गुनाहों का देवता</div>
+      </div>
+
+      <div class="q">
+        <div class="q-bg">"</div>
+        <span class="q-mark" style="font-size:3.5rem">"</span>
+        <p class="q-text" style="font-size:1.1rem">He was not the God of sins because he sinned. He was the God of sins because he sinned beautifully — with the whole of himself — withholding only the one word she needed to hear.</p>
+        <div class="q-attr">— On Chander</div>
+      </div>
+
+      <div class="q">
+        <div class="q-bg">"</div>
+        <span class="q-mark" style="font-size:3.5rem">"</span>
+        <p class="q-text" style="font-size:1.1rem">प्यार में चुप रहना भी एक गुनाह है — और शायद सबसे बड़ा गुनाह।</p>
+        <div class="q-attr">— Dharmaveer Bharti</div>
+      </div>
+
+      <div class="q span2" style="text-align:center">
+        <div class="q-bg">"</div>
+        <span class="q-mark">"</span>
+        <p class="q-text">Some loves are so immense they become their own cage — too vast to live inside, too beautiful to ever leave. That is the tragedy of Chander. That is the tragedy of all of us who ever chose silence when we should have spoken.</p>
+        <div class="q-attr">— The Heart of the Novel</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     CTA / SEJAL'S CORNER
+════════════════════════ -->
+<section id="cta">
+  <div class="cta-inner rv">
+    <div class="cta-badge">✨ Sejal Creates</div>
+    <h2 class="cta-h">Want more book breakdowns like this?</h2>
+    <p class="cta-sub">Follow Sejal Creates on YouTube and Instagram for deep dives into Hindi and world literature — written and visual content that makes reading feel like what it actually is: the most interesting thing you can do.</p>
+    <div class="cta-socials">
+      <a class="cta-soc cta-yt" href="https://youtube.com/@sejal.createss" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Subscribe on YouTube
+      </a>
+      <a class="cta-soc cta-ig" href="https://www.instagram.com/sejal.creates/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        Follow on Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════
+     FOOTER
+════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">Sejal <span>Creates</span></div>
+      <div class="footer-tagline">Making literature feel like home. 📚✨</div>
+    </div>
+    <div class="footer-book">गुनाहों का देवता</div>
+    <div class="footer-meta">
+      Dharmaveer Bharti · 1949<br>
+      Literary guide for educational appreciation.<br>
+      <span style="color:rgba(247,240,230,0.2)">Made with love by Sejal Creates</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let mx=0,my=0,tx=0,ty=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+setInterval(()=>{
+  tx+=(mx-tx)*.13; ty+=(my-ty)*.13;
+  cur2.style.left=tx+'px'; cur2.style.top=ty+'px';
+},14);
+document.querySelectorAll('a,button,.ch-card,.bn,.rl,.q,.hb-row,.cht-item,.social-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
+});
+
+/* ── PROGRESS ── */
+window.addEventListener('scroll',()=>{
+  const p=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100;
+  document.getElementById('prog').style.width=p+'%';
+  document.getElementById('nav').classList.toggle('solid',window.scrollY>60);
+});
+
+/* ── REVEAL ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('on'),+e.target.dataset.d||0);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.08});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach((el,i)=>{
+  el.dataset.d=Math.min((i%7)*70,420);
+  obs.observe(el);
+});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'});}
+  });
+});
+
+/* ── HERO TITLE BREATHING ── */
+const l2=document.querySelector('.hero-title .l2');
+if(l2){
+  let t=0;
+  setInterval(()=>{
+    t+=.018;
+    l2.style.filter=`drop-shadow(0 0 ${30+Math.sin(t)*15}px rgba(196,88,42,${0.3+Math.sin(t)*.12}))`;
+  },40);
+}
+
+/* ── ORB MOUSE PARALLAX ── */
+document.addEventListener('mousemove',e=>{
+  const ox=(e.clientX/window.innerWidth-.5)*18;
+  const oy=(e.clientY/window.innerHeight-.5)*18;
+  document.querySelectorAll('.orb').forEach((o,i)=>{
+    const f=(i+1)*.4;
+    o.style.transform=`translate(${ox*f}px,${oy*f}px)`;
+  });
+});
+</script>
+</body>
+</html>
